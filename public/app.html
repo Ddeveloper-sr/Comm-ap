@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Server list (far left rail) -->
+  <div class="server-rail" id="server-rail">
+    <div class="server-icon home active" title="Home">Home</div>
+    <div class="rail-divider"></div>
+    <div id="server-icons"></div>
+    <div class="server-icon add-server" id="btn-add-server" title="Add a server">+</div>
+  </div>
+
+  <!-- Channel sidebar -->
+  <div class="channel-sidebar">
+    <div class="server-header" id="current-server-name">Direct Messages</div>
+
+    <div class="channel-section">
+      <div class="channel-section-title">
+        <span>TEXT CHANNELS</span>
+        <button id="btn-add-channel" class="tiny-btn" title="Add channel">+</button>
+      </div>
+      <div id="channel-list"></div>
+    </div>
+
+    <div class="channel-section">
+      <div class="channel-section-title">
+        <span>VOICE CHANNELS</span>
+      </div>
+      <div id="voice-channel-list"></div>
+    </div>
+
+    <div class="user-panel">
+      <div class="user-avatar" id="user-avatar">?</div>
+      <div class="user-info">
+        <div class="user-name" id="current-username">Loading...</div>
+        <div class="user-status">Online</div>
+      </div>
+      <button id="btn-logout" class="icon-btn" title="Log out">Log Out</button>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="channel-topbar">
+      <span id="active-channel-label"># general</span>
+      <div class="topbar-members" id="member-count"></div>
+    </div>
+
+    <!-- Text chat view -->
+    <div id="text-view" class="chat-view">
+      <div class="messages" id="messages"></div>
+      <form id="message-form" class="message-form">
+        <input type="text" id="message-input" placeholder="Message #general" autocomplete="off">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- Voice channel view -->
+    <div id="voice-view" class="chat-view hidden">
+      <div class="voice-status">
+        <p id="voice-status-text">Not connected</p>
+        <div class="voice-participants" id="voice-participants"></div>
+        <div class="voice-controls">
+          <button id="btn-toggle-mute" class="voice-btn">Mute</button>
+          <button id="btn-toggle-video" class="voice-btn">Video</button>
+          <button id="btn-leave-voice" class="voice-btn danger">Leave</button>
+        </div>
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Members sidebar -->
+  <div class="members-sidebar">
+    <div class="members-title">MEMBERS</div>
+    <div id="members-list"></div>
+  </div>
+
+</div>
+
+<!-- Modal for creating a server -->
+<div id="modal-add-server" class="modal hidden">
+  <div class="modal-content">
+    <h3>Create a Server</h3>
+    <input type="text" id="new-server-name" placeholder="Server name">
+    <div class="modal-actions">
+      <button id="cancel-add-server">Cancel</button>
+      <button id="confirm-add-server" class="primary">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for creating a channel -->
+<div id="modal-add-channel" class="modal hidden">
+  <div class="modal-content">
+    <h3>Create a Channel</h3>
+    <input type="text" id="new-channel-name" placeholder="channel-name">
+    <select id="new-channel-type">
+      <option value="text">Text</option>
+      <option value="voice">Voice</option>
+    </select>
+    <div class="modal-actions">
+      <button id="cancel-add-channel">Cancel</button>
+      <button id="confirm-add-channel" class="primary">Create</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
